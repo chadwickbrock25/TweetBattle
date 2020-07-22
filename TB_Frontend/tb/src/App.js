@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  state = {
+    trumpURL: '',
+    kanyeURL: 'https://api.kanye.rest/',
+    tweet: '',
+  }
+
+  handleClick = () => {
+    fetch(this.state.kanyeURL).then(res =>  {
+      console.log(res);
+      return res.json();
+    }).then(data => {
+      console.log(data);
+      this.setState({
+        tweet: data,
+      });
+    }).catch(err => {
+      console.log('error:', err);
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Trump vs. Kanye: Who Done It?</h1>
+        {
+          this.state.tweet
+          ? <div>{ this.state.tweet.quote }</div>
+          : ''
+        }
+        <button onClick={ () => this.handleClick() }>Kanye</button>
+        <button>Trump</button>
+      </div>
+    )
+  }
 }
-
-export default App;
