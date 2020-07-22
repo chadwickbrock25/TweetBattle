@@ -1,3 +1,9 @@
 # TweetBattle
 
-Chad Brock
+## Collaborators
+* Chad
+* Lenny
+* Sasi
+
+
+Lenny!!!!
