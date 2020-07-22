@@ -7,6 +7,7 @@ export default class App extends Component {
     tweet: '',
     //if 0 then Kanye if 1 then Trump
     kanyeOrTrump: 0,
+    score: 0,
   }
 
   handleClick = () => {
@@ -44,6 +45,24 @@ export default class App extends Component {
     }
   }
 
+  checkScoreKanye = () => {
+    if (this.state.kanyeOrTrump === 0) {
+      let newScore = this.state.score + 1;
+      this.setState({
+        score: newScore,
+    })
+    }
+  }
+
+  checkScoreTrump = () => {
+    if (this.state.kanyeOrTrump === 1) {
+      let newScore = this.state.score + 1;
+      this.setState({
+        score: newScore,
+    })
+    }
+  }
+
   componentDidMount() {
     this.handleClick();
   }
@@ -52,6 +71,7 @@ export default class App extends Component {
     return (
       <div>
         <h1>Trump vs. Kanye: Who Done It?</h1>
+        <div>Score: { this.state.score }</div>
         {
           this.state.tweet.quote
           ? <div>{ this.state.tweet.quote }</div>
@@ -62,8 +82,8 @@ export default class App extends Component {
           ? <div>{ this.state.tweet.message }</div>
           : ''
         }
-        <button>Kanye</button>
-        <button>Trump</button>
+        <button onClick={ () => this.checkScoreKanye() }>Kanye</button>
+        <button onClick={ () => this.checkScoreTrump() }>Trump</button>
         <button onClick={ () => this.handleClick() }>New Quote</button>
       </div>
     )
