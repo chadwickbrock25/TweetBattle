@@ -2,23 +2,48 @@ import React, { Component } from 'react'
 
 export default class App extends Component {
   state = {
-    trumpURL: '',
+    trumpURL: 'https://api.whatdoestrumpthink.com/api/v1/quotes/random',
     kanyeURL: 'https://api.kanye.rest/',
     tweet: '',
   }
 
   handleClick = () => {
-    fetch(this.state.kanyeURL).then(res =>  {
-      console.log(res);
-      return res.json();
-    }).then(data => {
-      console.log(data);
-      this.setState({
-        tweet: data,
-      });
-    }).catch(err => {
-      console.log('error:', err);
-    })
+    let randomiser = () => {
+      return Math.floor(Math.random() * Math.floor(2))
+    }
+
+    console.log(randomiser());
+    
+    if (randomiser() === 0) {
+      fetch(this.state.kanyeURL).then(res =>  {
+        console.log(res);
+        return res.json();
+      }).then(data => {
+        console.log(data);
+        this.setState({
+          tweet: data,
+        });
+      }).catch(err => {
+        console.log('error:', err);
+      })
+    } else {
+      fetch(this.state.trumpURL).then(res =>  {
+        console.log(res);
+        return res.json();
+      }).then(data => {
+        console.log(data);
+        this.setState({
+          tweet: data,
+        });
+      }).catch(err => {
+        console.log('error:', err);
+      })
+    }
+
+  }
+
+  componentDidMount() {
+    this.handleClick();
   }
 
   render() {
