@@ -17,7 +17,7 @@ mongoose.connection.once('open', ()=>{
 app.use(express.json()); 
 
 
-const whitelist = ['http://localhost:3003'];
+const whitelist = ['http://localhost:3000'];
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) >= 0) {
@@ -30,7 +30,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-const tweetBattleController = require('./Controllers/tweetbattle.js')
+const tweetBattleController = require('./controllers/tweetbattle.js')
 app.use('/tweetbattle', tweetBattleController)
 
 

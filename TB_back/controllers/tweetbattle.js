@@ -5,11 +5,11 @@ const userModel = require('../models/user.js')
 
 // INDEX ROUTE
 tweetBattle.get('/', (req, res) => {
-    userModel.find({}, (err, foundTweetBattle) => {
+    userModel.find({}, (err, foundtweetbattle) => {
       if (err) {
         res.status(400).json({ error: err.message })
       }
-      res.status(200).json(foundTweetBattle)
+      res.status(200).json(foundtweetbattle)
     })
   })
 
