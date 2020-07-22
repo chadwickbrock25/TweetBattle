@@ -45,6 +45,7 @@ export default class App extends Component {
     }
   }
 
+  //Need to figure out how to only allow one click ie for score to only be added once on click
   checkScoreKanye = () => {
     if (this.state.kanyeOrTrump === 0) {
       let newScore = this.state.score + 1;
@@ -85,6 +86,8 @@ export default class App extends Component {
         <button onClick={ () => this.checkScoreKanye() }>Kanye</button>
         <button onClick={ () => this.checkScoreTrump() }>Trump</button>
         <button onClick={ () => this.handleClick() }>New Quote</button>
+
+        <div>Login</div>
       </div>
     )
   }
