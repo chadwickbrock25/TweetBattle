@@ -70,7 +70,7 @@ export default class App extends Component {
             console.log(data);
             this.setState({
               score: newScore,
-              gif: data,
+              gif: data.data.embed_url,
               kanyeOrTrump: 1,
             });
           })
@@ -89,7 +89,7 @@ export default class App extends Component {
             console.log(data);
             this.setState({
               score: newScore,
-              gif: data,
+              gif: data.data.embed_url,
               kanyeOrTrump: 1,
             });
           })
@@ -240,6 +240,9 @@ export default class App extends Component {
             <h1>Trump vs. Kanye: Who Done It?</h1>
             <p>It's a true battle of the intellect. Can you guess who said what?</p>
             <h2> <div>Score: { this.state.score }</div> </h2>
+
+            <iframe src={ this.state.gif } width="480" height="222" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
             <h3 style={{color:"red"}}>
             {
               this.state.tweet.quote
