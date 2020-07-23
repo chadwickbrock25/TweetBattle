@@ -44,14 +44,22 @@ tweetBattle.post('/', (req, res) => {
     })
   })
 
-  // UPDATE ROUTE
+  // UPDATE ROUTE TO SAVE TWEET
 tweetBattle.put('/:id', (req, res) => {
-    userModel.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedTweetBattle) => {
+  console.log('this is the req.body: ', req.body);
+  userModel.findById(req.body.id, (err, foundUser) => {
+    if (err) {
+      res.status(400).json({ error: err.message })
+    }
+    foundUser.savedTweets.push(req.body.savedTweet);
+    foundUser.save((err, data) => {
+      console.log('this is the founduser: ', foundUser);
       if (err) {
         res.status(400).json({ error: err.message })
       }
-      res.status(200).json(updatedTweetBattle)
+      res.status(200).json(foundUser.savedTweets);
     })
+  })
   })
 
   // DELETE ROUTE

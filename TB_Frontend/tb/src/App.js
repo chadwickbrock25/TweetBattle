@@ -80,64 +80,27 @@ export default class App extends Component {
         }
       }
 
-
-      //Need to refactor to PUT Route not POST!!!!
-      // saveTweet = (event) => {
-      //   const copySavedTweets = [ ...this.state.savedTweets ];
-      //   copySavedTweets.push(event);
-      //   console.log(copySavedTweets);
-      //       fetch(this.state.baseURL + '/tweetbattle', {
-      //           method: 'POST',
-      //           body: JSON.stringify({ 
-      //               savedTweets: copySavedTweets,
-      //           }),
-      //           headers:  {
-      //               'Content-Type': 'application/json'
-      //           }
-      //       }).then(res =>  {
-      //           return res.json()
-      //       }).then(data =>  {
-      //         console.log('this is the data:', data);
-      //           this.setState({
-      //               savedTweets: copySavedTweets,
-      //           })
-      //       }).catch(error =>  console.log({'Error': error}))
-      //   }
+      saveTweet = (tweet) => {
+        console.log('frontend-tweet', tweet);
+        console.log('this is the id: ', this.state.userid);
+            fetch(this.state.baseURL + '/tweetbattle/' + this.state.userid, {
+                method: 'PUT',
+                body: JSON.stringify({ 
+                    savedTweet: tweet,
+                    id: this.state.userid,
+                }),
+                headers:  {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res =>  {
+                return res.json()
+            }).then(data =>  {
+                this.setState({
+                    savedTweets: data,
+                })
+            }).catch(error =>  console.log({'Error': error}))
+        }
       
-
-
-      //To be deleted if works!!
-      // componentDidMount() {
-      //   this.handleClick();
-      // }
-
-    //   render() {
-    //     return (
-    //       <div>
-    //         <h1>Trump vs. Kanye: Who Done It?</h1>
-    //         <div>Score: { this.state.score }</div>
-    //         {
-    //           this.state.tweet.quote
-    //           ? <div>
-    //             { this.state.tweet.quote }
-    //             <button onClick={ () => this.saveTweet(this.state.tweet.quote) }>Save Tweet</button>
-    //             </div>
-    //           : ''
-    //         }
-    //         {
-    //           this.state.tweet.message
-    //           ? <div>{ this.state.tweet.message }</div>
-    //           : ''
-    //         }
-    //         <button onClick={ () => this.checkScoreKanye() }>Kanye</button>
-    //         <button onClick={ () => this.checkScoreTrump() }>Trump</button>
-    //         <button onClick={ () => this.handleClick() }>New Quote</button>
-
-    //         <div>Login</div>
-    //       </div>
-    //     )
-    //   }
-    // }
 
   //Sasi - added signup function
   signUp = (event) => {
@@ -273,7 +236,18 @@ export default class App extends Component {
             <button className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreKanye() }>Kanye</button>
             <button className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreTrump() }>Trump</button>
             <button className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.handleClick() }>New Quote</button>
-            {this.state.login? <button className="btn btn-success" style={{marginLeft:"6px"}}>Add Tweet</button>:""}
+            
+            { 
+            ( this.state.login && this.state.tweet.quote )
+            ? 
+            <button className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.quote) }>Add Tweet</button>
+            :
+            ( this.state.login && this.state.tweet.message )
+            ?
+            <button className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.message) }>Add Tweet</button>
+            : ""
+            }
+
           </>
         
         }
