@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-
+import React, { Component} from 'react';
 let baseURL = 'http://localhost:3003';
 
 console.log('current base URL:', baseURL);
@@ -13,6 +12,7 @@ export default class App extends Component {
     //if 0 then Kanye if 1 then Trump
     kanyeOrTrump: 0,
     score: 0,
+    //Sasi - added the below variables
     signUp:false,
     login:false,
     firstName: "",
@@ -82,14 +82,11 @@ export default class App extends Component {
     }
   }
 
-  componentDidMount() {
-    this.handleClick();
-  }
-  
+
   //Sasi - added signup function
   signUp = (event) => {
     event.preventDefault();
-    this.setState({signUp: true});
+    this.setState({signUp: true, login:false});
   }
 
  //Sasi - added login function
@@ -110,9 +107,11 @@ export default class App extends Component {
           loginUsername: resJson.username,
           loginPassword: "",
           token:resJson.token,
-          userid:resJson.userId
+          userid:resJson.id
         })
+        localStorage.setItem("loginInfo",JSON.stringify({id:resJson.id, loginUsername:resJson.username, token:resJson.token}));
     }).catch (error => console.error({'Error': error}))
+    
   }
 
   //Sasi - create route function
@@ -148,27 +147,22 @@ export default class App extends Component {
     this.setState({login: false, token:""});
   }
 
+  componentDidMount() {
+    this.handleClick();
+    //Sasi = Storing token and userid
+    let loginInfo = JSON.parse(localStorage.getItem("loginInfo"));
+    console.log(loginInfo);
+    if(loginInfo && loginInfo.token)
+    this.setState({token:loginInfo.token, userid:loginInfo.id, loginUsername:loginInfo.loginUsername, login:true});
+  }
+  
+
   render() {
     return (
       <div style={{margin:"50px"}}>
-        {this.state.login? "":
-              <ul className="nav">
-              <li className="nav-item">
-                <input className="form-control" type="text" onChange={this.handleChange} value={this.state.loginUsername} id="loginUsername" name="loginUsername" placeholder="email (Username)"/>
-              </li>
-              <li className="nav-item">
-                  <input  className="form-control" type="password" onChange={this.handleChange} value={this.state.loginPassword} id="loginPassword" name="loginPassword" placeholder="Password"/>
-              </li>
-              <li className="nav-item">    
-                <a className="nav-link" ><button onClick={this.login}>Login</button></a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link"><button onClick={this.signUp}>Signup</button></a>
-              </li>
-            </ul>
-        }
 
-        {this.state.login? <div style={{color:"blue"}}>{this.state.loginUsername} | {this.state.userid} <button onClick={this.logout}>Logout</button></div>:""}
+
+        {this.state.login? <div style={{color:"purple", fontSize:"20px"}}>User Name - {this.state.loginUsername} <button className="btn btn-dark" onClick={this.logout}>Logout</button></div>:""}
         {/* Sasi - START Toggle for Signup */}
         {this.state.signUp? 
           <form className="form" style={{width:"50%"}} onSubmit={this.createUser}>
@@ -190,8 +184,25 @@ export default class App extends Component {
           </form>
           :    
           <>
+            {this.state.login? "":
+                  <ul className="nav">
+                  <li className="nav-item">
+                    <input className="form-control" type="text" onChange={this.handleChange} value={this.state.loginUsername} id="loginUsername" name="loginUsername" placeholder="email (Username)"/>
+                  </li>
+                  <li className="nav-item">
+                      <input  className="form-control" type="password" onChange={this.handleChange} value={this.state.loginPassword} id="loginPassword" name="loginPassword" placeholder="Password"/>
+                  </li>
+                  <li className="nav-item">    
+                   <button className="btn btn-primary form-control" style={{marginLeft:"6px"}}onClick={this.login}>Login</button>
+                  </li>
+                  <li className="nav-item">
+                    <button className="btn btn-primary form-control" style={{marginLeft:"12px"}} onClick={this.signUp}>Signup</button>
+                  </li>
+                </ul>
+            }          
             <h1>Trump vs. Kanye: Who Done It?</h1>
-            <div>Score: { this.state.score }</div>
+            <h2> <div>Score: { this.state.score }</div> </h2>
+            <h3 style={{color:"red"}}>
             {
               this.state.tweet.quote
               ? <div>{ this.state.tweet.quote }</div>
@@ -202,10 +213,11 @@ export default class App extends Component {
               ? <div>{ this.state.tweet.message }</div>
               : ''
             }
-            <button onClick={ () => this.checkScoreKanye() }>Kanye</button>
-            <button onClick={ () => this.checkScoreTrump() }>Trump</button>
-            <button onClick={ () => this.handleClick() }>New Quote</button>
-            {this.state.login? <button className="btn btn-success">Add Tweet</button>:""}
+            </h3><br/>
+            <button className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreKanye() }>Kanye</button>
+            <button className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreTrump() }>Trump</button>
+            <button className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.handleClick() }>New Quote</button>
+            {this.state.login? <button className="btn btn-success" style={{marginLeft:"6px"}}>Add Tweet</button>:""}
           </>
         
         }

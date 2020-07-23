@@ -20,7 +20,7 @@ tweetBattle.post('/login', (req, res) => {
           { expiresIn: '1h' });
 
         res.status(200).json({
-          userId: foundtweetbattle.id, 
+          id: foundtweetbattle.id, 
           username: foundtweetbattle.username,
           token: token
         });
