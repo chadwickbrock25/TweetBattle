@@ -1,7 +1,7 @@
-const express = require('express')
-const tweetBattle = express.Router()
-
-const userModel = require('../models/user.js')
+const express = require('express');
+const tweetBattle = express.Router();
+const bcrypt = require("bcrypt");
+const userModel = require('../models/user.js');
 
 // INDEX ROUTE
 tweetBattle.get('/', (req, res) => {
@@ -15,11 +15,14 @@ tweetBattle.get('/', (req, res) => {
 
   // CREATE ROUTE
 tweetBattle.post('/', (req, res) => {
+  req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+  console.log(req.body.password);
     userModel.create(req.body, (error, createdTweetBattle) => {
       if (error) {
         res.status(400).json({ error: error.message })
       }
       res.status(200).send(createdTweetBattle) 
+      console.log(createdTweetBattle);
     })
   })
 
