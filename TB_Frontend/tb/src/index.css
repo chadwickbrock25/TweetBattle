@@ -10,6 +10,7 @@ body {
   border-right: 250px solid #FAD799;
   border-left: 250px solid #EFC680;
   height: 100%;
+  min-height: 100vh;
 }
 
 code {
@@ -54,7 +55,7 @@ code {
 .loggedIn {
   margin-bottom: 20px;
   min-height: 30px;
-  margin-top: 30px;
+  padding-top: 30px;
   margin-right: 10px;
 }
 
@@ -99,7 +100,7 @@ code {
   font-size: 9px;
   color: #667380;
   background-color: #fafcfb;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   padding-top: 5px;
   margin-bottom: -5px;
 }
