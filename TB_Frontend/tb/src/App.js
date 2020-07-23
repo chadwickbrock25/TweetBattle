@@ -28,7 +28,8 @@ export default class App extends Component {
   }
 
       handleClick = () => {
-
+        this.refs.kanye.removeAttribute("disabled");
+        this.refs.trump.removeAttribute("disabled");
         let randomiser = () => {
           return Math.floor(Math.random() * Math.floor(2))
         }
@@ -72,23 +73,22 @@ export default class App extends Component {
               gif: data,
               kanyeOrTrump: 1,
             });
-          }).catch(err => {
-            console.log('error:', err);
           })
-
-          this.setState({
-            
-        })
+          }
+          this.refs.trump.setAttribute("disabled", "disabled");
+          this.refs.kanye.setAttribute("disabled", "disabled");
         }
-      }
 
       checkScoreTrump = () => {
         if (this.state.kanyeOrTrump === 1) {
           let newScore = this.state.score + 1;
+          
           this.setState({
             score: newScore,
         })
         }
+        this.refs.trump.setAttribute("disabled", "disabled");
+        this.refs.kanye.setAttribute("disabled", "disabled");
       }
 
       saveTweet = (tweet) => {
@@ -244,14 +244,14 @@ export default class App extends Component {
               : ''
             }
             </h3><br/>
-            <button className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreKanye() }>Kanye</button>
-            <button className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreTrump() }>Trump</button>
+            <button ref="kanye" className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreKanye() }>Kanye</button>
+            <button ref="trump" className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreTrump() }>Trump</button>
             <button className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.handleClick() }>New Quote</button>
             
             { 
             ( this.state.login && this.state.tweet.quote )
             ? 
-            <button className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.quote) }>Add Tweet</button>
+            <button className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.quote) }>Save Tweet</button>
             :
             ( this.state.login && this.state.tweet.message )
             ?
