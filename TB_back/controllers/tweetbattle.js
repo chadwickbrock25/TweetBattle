@@ -22,7 +22,8 @@ tweetBattle.post('/login', (req, res) => {
         res.status(200).json({
           id: foundtweetbattle.id, 
           username: foundtweetbattle.username,
-          token: token
+          token: token,
+          savedTweets:foundtweetbattle.savedTweets
         });
 
     } else {
