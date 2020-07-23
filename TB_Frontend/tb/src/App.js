@@ -279,15 +279,17 @@ export default class App extends Component {
               : ''
             } 
 
-            <h3 style={{color:"#8A2BE2"}}>
+            
+
+            <h3 className="quote">
             {
               this.state.tweet.quote
-              ? <div>{ this.state.tweet.quote }</div>
+              ? <div>"{ this.state.tweet.quote }"</div>
               : ''
             }
             {
               this.state.tweet.message
-              ? <div>{ this.state.tweet.message }</div>
+              ? <div>"{ this.state.tweet.message }"</div>
               : ''
             }
             </h3><br/>
