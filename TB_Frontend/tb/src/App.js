@@ -4,6 +4,7 @@ export default class App extends Component {
   state = {
     trumpURL: 'https://api.whatdoestrumpthink.com/api/v1/quotes/random',
     kanyeURL: 'https://api.kanye.rest/',
+    gif: '',
     tweet: '',
     //if 0 then Kanye if 1 then Trump
     kanyeOrTrump: 0,
@@ -34,10 +35,8 @@ export default class App extends Component {
 
         if (randomiser() === 0) {
           fetch(this.state.kanyeURL).then(res =>  {
-            console.log(res);
             return res.json();
           }).then(data => {
-            console.log(data);
             this.setState({
               tweet: data,
               kanyeOrTrump: 0,
@@ -47,10 +46,8 @@ export default class App extends Component {
           })
         } else {
           fetch(this.state.trumpURL).then(res =>  {
-            console.log(res);
             return res.json();
           }).then(data => {
-            console.log(data);
             this.setState({
               tweet: data,
               kanyeOrTrump: 1,
@@ -65,8 +62,22 @@ export default class App extends Component {
       checkScoreKanye = () => {
         if (this.state.kanyeOrTrump === 0) {
           let newScore = this.state.score + 1;
+
+          fetch('https://api.giphy.com/v1/gifs/random?' + process.env.SECRET + '=kanye-west&rating=g').then(res =>  {
+            return res.json();
+          }).then(data => {
+            console.log(data);
+            this.setState({
+              score: newScore,
+              gif: data,
+              kanyeOrTrump: 1,
+            });
+          }).catch(err => {
+            console.log('error:', err);
+          })
+
           this.setState({
-            score: newScore,
+            
         })
         }
       }
@@ -244,7 +255,7 @@ export default class App extends Component {
             :
             ( this.state.login && this.state.tweet.message )
             ?
-            <button className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.message) }>Add Tweet</button>
+            <button className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.message) }>Save Tweet</button>
             : ""
             }
 
