@@ -18,7 +18,11 @@ export default class App extends Component {
     firstName: "",
     lastName: "",
     username: "",
-    password: ""
+    password: "",
+    loginUsername: "",
+    loginPassword: "",
+    token:"",
+    userid:""
   }
 
   handleChange = (event) => {
@@ -88,11 +92,28 @@ export default class App extends Component {
     this.setState({signUp: true});
   }
 
-  //Sasi - added home function
-    home = (event) => {
-      event.preventDefault();
-      this.setState({signUp: false});
-    }
+ //Sasi - added login function
+ login = (event) => {
+    event.preventDefault();
+    fetch(baseURL + '/tweetbattle/login', {
+      method: 'POST',
+      body: JSON.stringify({username: this.state.loginUsername, 
+                            password: this.state.loginPassword}
+                            ),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then (res => res.json())
+      .then (resJson => {console.log(resJson);
+        this.setState({
+          login:true,
+          loginUsername: resJson.username,
+          loginPassword: "",
+          token:resJson.token,
+          userid:resJson.userId
+        })
+    }).catch (error => console.error({'Error': error}))
+  }
 
   //Sasi - create route function
   createUser = (event) => {
@@ -121,34 +142,47 @@ export default class App extends Component {
 
   }
 
+  //Sasi - added logout function
+  logout = (event) => {
+    event.preventDefault();
+    this.setState({login: false, token:""});
+  }
+
   render() {
     return (
-      <div>
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link"><button onClick={this.home}>Home</button></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" ><button>Login</button></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"><button onClick={this.signUp}>Signup</button></a>
-          </li>
-        </ul>
+      <div style={{margin:"50px"}}>
+        {this.state.login? "":
+              <ul className="nav">
+              <li className="nav-item">
+                <input className="form-control" type="text" onChange={this.handleChange} value={this.state.loginUsername} id="loginUsername" name="loginUsername" placeholder="email (Username)"/>
+              </li>
+              <li className="nav-item">
+                  <input  className="form-control" type="password" onChange={this.handleChange} value={this.state.loginPassword} id="loginPassword" name="loginPassword" placeholder="Password"/>
+              </li>
+              <li className="nav-item">    
+                <a className="nav-link" ><button onClick={this.login}>Login</button></a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link"><button onClick={this.signUp}>Signup</button></a>
+              </li>
+            </ul>
+        }
+
+        {this.state.login? <div style={{color:"blue"}}>{this.state.loginUsername} | {this.state.userid} <button onClick={this.logout}>Logout</button></div>:""}
         {/* Sasi - START Toggle for Signup */}
         {this.state.signUp? 
           <form className="form" style={{width:"50%"}} onSubmit={this.createUser}>
-            <div className="form-group">
-                <input className="form-control" type="text" onChange={this.handleChange} value={this.state.name} placeholder="First name" id="firstName" name="firstName"/>
+           <div className="form-group">
+                <input className="form-control" type="text" onChange={this.handleChange} value={this.state.firstName} placeholder="First name" id="firstName" name="firstName"/>
             </div>
             <div className="form-group">
-                <input className="form-control" type="text"  onChange={this.handleChange} value={this.state.name} placeholder="Last name" id="lastName" name="lastName"/>
+                <input className="form-control" type="text"  onChange={this.handleChange} value={this.state.lastName} placeholder="Last name" id="lastName" name="lastName"/>
             </div>
             <div className="form-group">
-                <input className="form-control" type="text" onChange={this.handleChange} value={this.state.name} id="username" name="username" placeholder="email (Username)"/>
+                <input className="form-control" type="text" onChange={this.handleChange} value={this.state.username} id="username" name="username" placeholder="email (Username)"/>
             </div>
             <div className="form-group"> 
-                <input  className="form-control" type="password" onChange={this.handleChange} value={this.state.name} id="password" name="password" placeholder="Password"/>
+                <input  className="form-control" type="password" onChange={this.handleChange} value={this.state.password} id="password" name="password" placeholder="Password"/>
             </div>
             <div className="form-group">
                 <input className="btn btn-primary form-control" type="submit" value="Sign up"/>
@@ -171,6 +205,7 @@ export default class App extends Component {
             <button onClick={ () => this.checkScoreKanye() }>Kanye</button>
             <button onClick={ () => this.checkScoreTrump() }>Trump</button>
             <button onClick={ () => this.handleClick() }>New Quote</button>
+            {this.state.login? <button className="btn btn-success">Add Tweet</button>:""}
           </>
         
         }
