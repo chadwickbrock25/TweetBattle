@@ -28,8 +28,13 @@ export default class App extends Component {
   }
 
       handleClick = () => {
+        console.log(this.refs)
+        if(this.state.login) {
+          this.refs.chad.removeAttribute("disabled");
+        }
         this.refs.kanye.removeAttribute("disabled");
         this.refs.trump.removeAttribute("disabled");
+        
         let randomiser = () => {
           return Math.floor(Math.random() * Math.floor(2))
         }
@@ -110,6 +115,10 @@ export default class App extends Component {
                     savedTweets: data,
                 })
             }).catch(error =>  console.log({'Error': error}))
+            if(this.state.login) {
+              this.refs.chad.setAttribute("disabled", "disabled");
+            }
+            
         }
       
 
@@ -251,11 +260,11 @@ export default class App extends Component {
             { 
             ( this.state.login && this.state.tweet.quote )
             ? 
-            <button className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.quote) }>Save Tweet</button>
+            <button ref="chad" className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.quote) }>Save Tweet</button>
             :
             ( this.state.login && this.state.tweet.message )
             ?
-            <button className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.message) }>Save Tweet</button>
+            <button ref="chad" className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.message) }>Save Tweet</button>
             : ""
             }
 
