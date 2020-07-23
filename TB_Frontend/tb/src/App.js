@@ -248,6 +248,17 @@ export default class App extends Component {
             : ""
             }
 
+            {
+              this.state.savedTweets
+              ?
+              this.state.savedTweets.map(tweet => {
+                return (
+                <div>{ tweet }</div>
+                )
+              })
+              : ''
+            }
+
           </>
         
         }
