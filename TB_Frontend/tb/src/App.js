@@ -248,16 +248,19 @@ export default class App extends Component {
             : ""
             }
 
+            <div className="row justify-content-center allSavedTweets">
             {
               this.state.savedTweets
               ?
               this.state.savedTweets.map(tweet => {
                 return (
-                <div>{ tweet }</div>
+                <div className="w-25 p-3 savedTweet">{ tweet }</div>
                 )
               })
+              
               : ''
             }
+            </div>
 
           </>
         
