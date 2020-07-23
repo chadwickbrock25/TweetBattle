@@ -218,8 +218,9 @@ export default class App extends Component {
     return (
       <div style={{margin:"50px"}}>
 
-        
-        {this.state.login? <div style={{color:"purple", fontSize:"20px"}}>User Name - {this.state.loginUsername} <button className="btn btn-dark float-right" onClick={this.logout}>Logout</button></div>:""}
+        <div className="loggedIn">
+        {this.state.login? <button className="btn btn-dark float-right" onClick={this.logout}>Logout</button>:""}
+        </div>
         {/* Sasi - START Toggle for Signup */}
         {this.state.signUp? 
           <form className="form" style={{width:"50%"}} onSubmit={this.createUser}>
