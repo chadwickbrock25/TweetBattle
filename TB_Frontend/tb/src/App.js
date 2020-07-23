@@ -64,7 +64,7 @@ export default class App extends Component {
         if (this.state.kanyeOrTrump === 0) {
           let newScore = this.state.score + 1;
 
-          fetch('https://api.giphy.com/v1/gifs/random?' + process.env.SECRET + '=kanye-west&rating=g').then(res =>  {
+          fetch('https://api.giphy.com/v1/gifs/random?api_key=' + process.env.REACT_APP_SECRET + '&tag=kanye-west&rating=g').then(res =>  {
             return res.json();
           }).then(data => {
             console.log(data);
@@ -83,9 +83,16 @@ export default class App extends Component {
         if (this.state.kanyeOrTrump === 1) {
           let newScore = this.state.score + 1;
           
-          this.setState({
-            score: newScore,
-        })
+          fetch('https://api.giphy.com/v1/gifs/random?api_key=' + process.env.REACT_APP_SECRET + '&tag=donald-trump&rating=g').then(res =>  {
+            return res.json();
+          }).then(data => {
+            console.log(data);
+            this.setState({
+              score: newScore,
+              gif: data,
+              kanyeOrTrump: 1,
+            });
+          })
         }
         this.refs.trump.setAttribute("disabled", "disabled");
         this.refs.kanye.setAttribute("disabled", "disabled");
@@ -191,8 +198,8 @@ export default class App extends Component {
     return (
       <div style={{margin:"50px"}}>
 
-
-        {this.state.login? <div style={{color:"purple", fontSize:"20px"}}>User Name - {this.state.loginUsername} <button className="btn btn-dark" onClick={this.logout}>Logout</button></div>:""}
+        
+        {this.state.login? <div style={{color:"purple", fontSize:"20px"}}>User Name - {this.state.loginUsername} <button className="btn btn-dark float-right" onClick={this.logout}>Logout</button></div>:""}
         {/* Sasi - START Toggle for Signup */}
         {this.state.signUp? 
           <form className="form" style={{width:"50%"}} onSubmit={this.createUser}>
@@ -231,6 +238,7 @@ export default class App extends Component {
                 </ul>
             }          
             <h1>Trump vs. Kanye: Who Done It?</h1>
+            <p>It's a true battle of the intellect. Can you guess who said what?</p>
             <h2> <div>Score: { this.state.score }</div> </h2>
             <h3 style={{color:"red"}}>
             {

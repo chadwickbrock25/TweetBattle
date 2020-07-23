@@ -38,3 +38,9 @@ code {
 .savedTweet:hover {
   top: -5px;
 }
+
+.loggedIn {
+  margin-bottom: 20px;
+  width: 100%;
+  min-height: 30px;
+}
