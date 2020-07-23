@@ -22,6 +22,7 @@
       token:"",
       userid:"",
       baseURL: 'http://localhost:3003',
+      savedTweets:[]
     }
 
     handleChange = (event) => {
@@ -164,7 +165,8 @@
             loginUsername: resJson.username,
             loginPassword: "",
             token:resJson.token,
-            userid:resJson.id
+            userid:resJson.id,
+            savedTweets:resJson.savedTweets
           })
           localStorage.setItem("loginInfo",JSON.stringify({id:resJson.id, loginUsername:resJson.username, token:resJson.token}));
       }).catch (error => console.error({'Error': error}))
@@ -204,6 +206,12 @@
       this.setState({login: false, token:""});
     }
 
+    //Sasi - added cancel function
+    cancel = (event) => {
+      event.preventDefault();
+      this.setState({signUp: false, login:false});
+    }
+
     componentDidMount() {
       this.handleClick();
       //Sasi = Storing token and userid
@@ -237,7 +245,8 @@
                   <input  className="form-control" type="password" onChange={this.handleChange} value={this.state.password} id="password" name="password" placeholder="Password"/>
               </div>
               <div className="form-group">
-                  <input className="btn btn-primary form-control" type="submit" value="Sign up"/>
+                  <input className="btn btn-primary form-control" style={{width:"70%"}} type="submit" value="Sign up"/>
+                  <input className="btn btn-danger form-control" style={{width:"25%", marginLeft: "6px"}} onClick={this.cancel} value="Cancel"/>
               </div>  
             </form>
             :    
@@ -304,7 +313,7 @@
 
               <div className="row justify-content-center allSavedTweets">
               {
-                this.state.savedTweets
+                (this.state.savedTweets && this.state.login)
                 ?
                 this.state.savedTweets.map(tweet => {
                   return (
