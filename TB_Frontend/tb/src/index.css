@@ -38,3 +38,18 @@ code {
 .savedTweet:hover {
   top: -5px;
 }
+
+.loggedIn {
+  margin-bottom: 20px;
+  width: 100%;
+  min-height: 30px;
+}
+
+.answer {
+  margin-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.container {
+  min-height: 150px;
+}

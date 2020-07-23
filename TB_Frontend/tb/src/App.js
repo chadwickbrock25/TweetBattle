@@ -9,6 +9,7 @@ export default class App extends Component {
     //if 0 then Kanye if 1 then Trump
     kanyeOrTrump: 0,
     score: 0,
+    answer: false,
     //Sasi - added the below variables
     signUp:false,
     login:false,
@@ -46,6 +47,7 @@ export default class App extends Component {
             this.setState({
               tweet: data,
               kanyeOrTrump: 0,
+              answer: false,
             });
           }).catch(err => {
             console.log('error:', err);
@@ -57,6 +59,7 @@ export default class App extends Component {
             this.setState({
               tweet: data,
               kanyeOrTrump: 1,
+              answer: false,
             });
           }).catch(err => {
             console.log('error:', err);
@@ -69,16 +72,22 @@ export default class App extends Component {
         if (this.state.kanyeOrTrump === 0) {
           let newScore = this.state.score + 1;
 
-          fetch('https://api.giphy.com/v1/gifs/random?' + process.env.SECRET + '=kanye-west&rating=g').then(res =>  {
+          fetch('https://api.giphy.com/v1/gifs/random?api_key=' + process.env.REACT_APP_SECRET + '&tag=kanye-west&rating=r').then(res =>  {
             return res.json();
           }).then(data => {
             console.log(data);
             this.setState({
               score: newScore,
-              gif: data,
+              gif: data.data.embed_url,
               kanyeOrTrump: 1,
+              answer: false,
             });
           })
+          } else {
+            this.setState({
+              gif: 'https://giphy.com/gifs/kanye-west-shrug-shrugging-UUvaW1L0SK9Mc',
+              answer: !this.state.answer,
+            })
           }
           this.refs.trump.setAttribute("disabled", "disabled");
           this.refs.kanye.setAttribute("disabled", "disabled");
@@ -88,9 +97,27 @@ export default class App extends Component {
         if (this.state.kanyeOrTrump === 1) {
           let newScore = this.state.score + 1;
           
-          this.setState({
-            score: newScore,
-        })
+          fetch('https://api.giphy.com/v1/gifs/random?api_key=' + process.env.REACT_APP_SECRET + '&tag=donald-trump&rating=r').then(res =>  {
+            return res.json();
+          }).then(data => {
+            console.log(data);
+            this.setState({
+              score: newScore,
+              gif: data.data.embed_url,
+              kanyeOrTrump: 1,
+              answer: false,
+            });
+          })
+        } else {
+          fetch('https://api.giphy.com/v1/gifs/random?api_key=' + process.env.REACT_APP_SECRET + '&tag=incorrect&rating=r').then(res =>  {
+            return res.json();
+          }).then(data => {
+            console.log(data);
+            this.setState({
+              gif: data.data.embed_url,
+              answer: !this.state.answer,
+            });
+          })
         }
         this.refs.trump.setAttribute("disabled", "disabled");
         this.refs.kanye.setAttribute("disabled", "disabled");
@@ -200,8 +227,8 @@ export default class App extends Component {
     return (
       <div style={{margin:"50px"}}>
 
-
-        {this.state.login? <div style={{color:"purple", fontSize:"20px"}}>User Name - {this.state.loginUsername} <button className="btn btn-dark" onClick={this.logout}>Logout</button></div>:""}
+        
+        {this.state.login? <div style={{color:"purple", fontSize:"20px"}}>User Name - {this.state.loginUsername} <button className="btn btn-dark float-right" onClick={this.logout}>Logout</button></div>:""}
         {/* Sasi - START Toggle for Signup */}
         {this.state.signUp? 
           <form className="form" style={{width:"50%"}} onSubmit={this.createUser}>
@@ -240,8 +267,19 @@ export default class App extends Component {
                 </ul>
             }          
             <h1>Trump vs. Kanye: Who Done It?</h1>
+            <p>It's a true battle of the intellect. Can you guess who said what?</p>
             <h2> <div>Score: { this.state.score }</div> </h2>
-            <h3 style={{color:"red"}}>
+
+            <iframe src={ this.state.gif } width="480" height="222" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+            <div className="container">
+            {
+              this.state.answer
+              ? <div className="answer">Better luck next time! Don't worry you are still the greatest</div>
+              : ''
+            } 
+
+            <h3 style={{color:"#8A2BE2"}}>
             {
               this.state.tweet.quote
               ? <div>{ this.state.tweet.quote }</div>
@@ -267,6 +305,8 @@ export default class App extends Component {
             <button ref="chad" className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.message) }>Save Tweet</button>
             : ""
             }
+
+          </div>
 
             <div className="row justify-content-center allSavedTweets">
             {
