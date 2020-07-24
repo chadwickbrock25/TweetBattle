@@ -53,13 +53,13 @@ code {
 }
 
 .loggedIn {
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   min-height: 30px;
   padding-top: 30px;
   margin-right: 10px;
 }
 
-.answer {
+.answer .score {
   margin-bottom: 20px;
   margin-bottom: 20px;
 }
