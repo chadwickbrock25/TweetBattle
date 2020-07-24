@@ -265,7 +265,7 @@
           </div>
           {/* Sasi - START Toggle for Signup */}
           {this.state.signUp? 
-            <form className="form" style={{width:"50%"}} onSubmit={this.createUser}>
+            <form className="form justify-content-center" style={{width:"50%"}} onSubmit={this.createUser}>
             <div className="form-group">
                   <input className="form-control" type="text" onChange={this.handleChange} value={this.state.firstName} placeholder="First name" id="firstName" name="firstName"/>
               </div>

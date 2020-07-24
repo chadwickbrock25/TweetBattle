@@ -41,6 +41,10 @@ iframe {
   margin-top: 35px;
 }
 
+.form {
+  margin: auto;
+}
+
 .savedTweet {
   background-color: #fafcfb;
   padding: 15px;
