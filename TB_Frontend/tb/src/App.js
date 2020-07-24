@@ -301,9 +301,10 @@
                       <button className="btn btn-primary form-control" style={{marginLeft:"12px"}} onClick={this.signUp}>Signup</button>
                     </li>
                   </ul>
-              }          
-              <h1>Trump vs. Kanye: Who Done It?</h1>
-              <p>It's a true battle of the intellect. Can you guess who said what?</p>
+              }
+              <div className="logo">
+              
+              </div>
               <h2> <div className="score">Score: { this.state.score }</div> </h2>
 
               <iframe src={ this.state.gif } width="480" height="222" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>

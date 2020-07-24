@@ -109,7 +109,13 @@ code {
   margin-bottom: -5px;
 }
 
-
+.logo{
+  background-image: url(./battleheader.jpg);
+  background-size: 900px;
+  width: 50rem;
+  height: 30rem;
+  margin: auto;
+}
 
 
 
