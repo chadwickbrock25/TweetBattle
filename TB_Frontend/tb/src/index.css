@@ -68,9 +68,19 @@ code {
   background-image: url("./ezgif.com-crop\ \(22\).gif");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 170px 170px;
   width: 100%;
-
+  height: 200px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.score p {
+  margin: 0;
+}
+
 
 .container {
   min-height: 250px;
