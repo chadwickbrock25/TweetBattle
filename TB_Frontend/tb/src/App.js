@@ -122,11 +122,14 @@
         saveTweet = (tweet) => {
           console.log('frontend-tweet', tweet);
           console.log('this is the id: ', this.state.userid);
+          let loginInfo = JSON.parse(localStorage.getItem("loginInfo"));
               fetch(this.state.baseURL + '/tweetbattle/' + this.state.userid, {
                   method: 'PUT',
                   body: JSON.stringify({ 
                       savedTweet: tweet,
                       id: this.state.userid,
+                      password:loginInfo.loginPassword,
+                      token:loginInfo.token
                   }),
                   headers:  {
                       'Content-Type': 'application/json'
@@ -168,7 +171,7 @@
             userid:resJson.id,
             savedTweets:resJson.savedTweets
           })
-          localStorage.setItem("loginInfo",JSON.stringify({id:resJson.id, loginUsername:resJson.username, token:resJson.token}));
+          localStorage.setItem("loginInfo",JSON.stringify({id:resJson.id, loginPassword: resJson.password, loginUsername:resJson.username, token:resJson.token}));
       }).catch (error => console.error({'Error': error}))
       
     }

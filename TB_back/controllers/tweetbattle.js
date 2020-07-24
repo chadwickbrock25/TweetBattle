@@ -3,6 +3,7 @@ const tweetBattle = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const userModel = require('../models/user.js');
+const TOKEN_SECRET = "SECRET_TWEETBATTLE";
 
 // LOGIN ROUTE
 tweetBattle.post('/login', (req, res) => {
@@ -16,12 +17,13 @@ tweetBattle.post('/login', (req, res) => {
         //res.status(200).json(foundtweetbattle)
         let token = jwt.sign(
           { userId: foundtweetbattle.id, username: foundtweetbattle.username},
-          'SECRET_TWEETBATTLE',
+          TOKEN_SECRET,
           { expiresIn: '1h' });
-
+          console.log(foundtweetbattle);
         res.status(200).json({
           id: foundtweetbattle.id, 
           username: foundtweetbattle.username,
+          password:foundtweetbattle.password,
           token: token,
           savedTweets:foundtweetbattle.savedTweets
         });
@@ -48,20 +50,31 @@ tweetBattle.post('/', (req, res) => {
   // UPDATE ROUTE TO SAVE TWEET
 tweetBattle.put('/:id', (req, res) => {
   console.log('this is the req.body: ', req.body);
-  userModel.findById(req.body.id, (err, foundUser) => {
-    if (err) {
-      res.status(400).json({ error: err.message })
-    }
-    foundUser.savedTweets.push(req.body.savedTweet);
-    foundUser.save((err, data) => {
-      console.log('this is the founduser: ', foundUser);
+    userModel.findById(req.body.id, (err, foundUser) => {
       if (err) {
         res.status(400).json({ error: err.message })
       }
-      res.status(200).json(foundUser.savedTweets);
+      if (req.body.password == foundUser.password) {
+        let verifiedUser = jwt.verify(req.body.token, TOKEN_SECRET);
+        console.log(verifiedUser);
+        if(req.body.id == verifiedUser.userId){
+          foundUser.savedTweets.push(req.body.savedTweet);
+          foundUser.save((err, data) => {
+            console.log('this is the founduser: ', foundUser);
+            if (err) {
+              res.status(400).json({ error: err.message })
+            }
+            res.status(200).json(foundUser.savedTweets);
+          })
+        }
+      } 
+      else{
+        res.status(401).json({message:"Invalid Username/Password"});
+      }
+
     })
-  })
-  })
+
+});
 
   // DELETE ROUTE
 tweetBattle.delete('/:id', (req, res) => {
