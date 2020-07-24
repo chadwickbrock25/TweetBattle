@@ -1,6 +1,5 @@
   import React, { Component} from 'react';
   import Footer from './components/footer';
-  import Circle from '.'
 
   export default class App extends Component {
     state = {

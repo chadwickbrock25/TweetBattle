@@ -64,9 +64,13 @@ code {
   margin-bottom: 20px;
 }
 
-/* .score {
-  background-image: url("../public/ezgif.com-crop\ \(22\).gif");
-} */
+.score {
+  background-image: url("./ezgif.com-crop\ \(22\).gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+
+}
 
 .container {
   min-height: 250px;
