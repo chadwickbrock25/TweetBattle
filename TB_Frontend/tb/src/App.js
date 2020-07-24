@@ -305,7 +305,11 @@
               <p>It's a true battle of the intellect. Can you guess who said what?</p>
               <h2> <div className="score"><p>Score: { this.state.score }</p></div> </h2>
 
-              <iframe src={ this.state.gif } width="480" height="222" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              {
+                this.state.gif
+                ? <iframe src={ this.state.gif } width="480" height="222" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                : ''
+              }
 
               <div className="container">
               {
@@ -328,8 +332,13 @@
                 : ''
               }
               </h3><br/>
-              <button ref="kanye" className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreKanye() }>Kanye</button>
-              <button ref="trump" className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreTrump() }>Trump</button>
+
+              <div className="kanyeTrump">
+              <button ref="kanye" className="btn btn-primary kanye" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreKanye() }>Kanye</button>
+              <button ref="trump" className="btn btn-primary trump" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreTrump() }>Trump</button>
+              </div>
+
+              <div className="saveQuote">
               <button className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.handleClick() }>New Quote</button>
               
               { 
@@ -342,6 +351,7 @@
               <button ref="chad" className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.message) }>Save Quote</button>
               : ""
               }
+            </div>
 
             </div>
 
@@ -353,7 +363,7 @@
                   return (
                   <div className="w-25 p-3 savedTweet">
                     <button style={{marginLeft:"80%", border:"none", backgroundColor:"white"}} onClick={e => this.delete(index)} key={index} value={index}>
-                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="red" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                         <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                       </svg>

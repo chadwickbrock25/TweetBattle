@@ -92,6 +92,7 @@ iframe {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #667380;
 }
 
 .score p {
@@ -115,6 +116,27 @@ iframe {
   -moz-box-shadow: 7px 7px 15px -17px rgba(46,50,60,0.9);
   box-shadow: 7px 7px 15px -17px rgba(46,50,60,0.9);
   border-radius: 5px;
+}
+
+.kanyeTrump {
+  margin-bottom: 20px;
+}
+
+.btn  {
+  width: 120px;
+  font-weight: 600;
+}
+
+.trump {
+  background-color: orange;
+  border-color: orange;
+  width: 200px;
+}
+
+.kanye {
+  background-color: purple;
+  border-color: purple;
+  width: 200px;
 }
 
 .footer {
