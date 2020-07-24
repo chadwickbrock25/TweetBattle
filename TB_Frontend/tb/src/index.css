@@ -189,9 +189,10 @@ p {
 .logo{
   background-image: url(./battleheader.jpg);
   background-size: 500px;
-  width: 27rem;
-  height: 16rem;
-  margin-left: 14rem
+  height: 20rem;
+  background-repeat: no-repeat;
+  background-position: center;
+
 }
 
 
