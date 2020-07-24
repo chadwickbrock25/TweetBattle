@@ -23,6 +23,10 @@ iframe {
   margin-bottom: 10px;
 }
 
+p {
+  color: #667380;
+}
+
 .main {
   margin-top: 50px;
   margin: auto;
@@ -36,6 +40,14 @@ iframe {
   margin-bottom: 20px;
 }
 
+.subHeadline  {
+  color: #667380;
+  font-size: large;
+}
+
+.favourites {
+  color: #667380;
+}
 
 .allSavedTweets {
   margin-top: 35px;

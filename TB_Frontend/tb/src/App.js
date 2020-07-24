@@ -263,6 +263,11 @@
           <div className="loggedIn">
           {this.state.login? <button className="btn btn-dark float-right" onClick={this.logout}>Logout</button>:""}
           </div>
+                {
+                  (this.state.login)
+                  ? ''
+                  : <p>Signup to save your favourites!</p>
+                }
           {/* Sasi - START Toggle for Signup */}
           {this.state.signUp? 
             <form className="form justify-content-center" style={{width:"50%"}} onSubmit={this.createUser}>
@@ -302,7 +307,7 @@
                   </ul>
               }          
               <h1>Trump vs. Kanye: Who Done It?</h1>
-              <p>It's a true battle of the intellect. Can you guess who said what?</p>
+              <p className="subHeadline">It's a true battle of the intellect. Can you guess who said what?</p>
               <h2> <div className="score"><p>Score: { this.state.score }</p></div> </h2>
 
               {
@@ -356,9 +361,16 @@
             </div>
 
               <div className="row justify-content-center allSavedTweets">
+
+                {
+                  (this.state.savedTweets && this.state.login)
+                  ? <h2 className="favourites">Your Favourites</h2>
+                  : ''
+                }
+      
               {
                 (this.state.savedTweets && this.state.login)
-                ?
+                ? 
                 this.state.savedTweets.map((tweet,index) => {
                   return (
                   <div className="w-25 p-3 savedTweet">
