@@ -1,4 +1,5 @@
   import React, { Component} from 'react';
+  import Footer from './components/footer';
 
   export default class App extends Component {
     state = {
@@ -369,11 +370,7 @@
             
           }
 
-        <div className="footer">
-        <div className="footer-text">
-          Copyright &copy; 2020 &mdash; TheGreatestBattle | Made with &hearts; in Texas, Atlanta & London
-        </div>
-        </div>
+        <Footer />
 
           {/* Sasi - END Toggle for Signup */}
         </div>
