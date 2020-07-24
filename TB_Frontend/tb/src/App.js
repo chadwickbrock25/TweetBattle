@@ -1,5 +1,6 @@
   import React, { Component} from 'react';
   import Footer from './components/footer';
+  import Circle from '.'
 
   export default class App extends Component {
     state = {
@@ -30,17 +31,12 @@
       this.setState({ [event.currentTarget.id]: event.currentTarget.value})
     }
 
-      handleClick = () => {
-        console.log(this.refs)
-        if(this.state.login) {
-          this.refs.chad.removeAttribute("disabled");
-        }
-        this.refs.kanye.removeAttribute("disabled");
-        this.refs.trump.removeAttribute("disabled");
-        
-        let randomiser = () => {
-          return Math.floor(Math.random() * Math.floor(2))
-        }
+        handleClick = () => {
+          this.refs.kanye.removeAttribute("disabled");
+          this.refs.trump.removeAttribute("disabled");
+          let randomiser = () => {
+            return Math.floor(Math.random() * Math.floor(2))
+          }
 
           if (randomiser() === 0) {
             fetch(this.state.kanyeURL).then(res =>  {
@@ -125,32 +121,30 @@
           this.refs.kanye.setAttribute("disabled", "disabled");
         }
 
-        
+        saveTweet = (tweet) => {
+          console.log('frontend-tweet', tweet);
+          console.log('this is the id: ', this.state.userid);
+          let loginInfo = JSON.parse(localStorage.getItem("loginInfo"));
+              fetch(this.state.baseURL + '/tweetbattle/' + this.state.userid, {
+                  method: 'PUT',
+                  body: JSON.stringify({ 
+                      savedTweet: tweet,
+                      id: this.state.userid,
+                      password:loginInfo.loginPassword,
+                      token:loginInfo.token
+                  }),
+                  headers:  {
+                      'Content-Type': 'application/json'
+                  }
+              }).then(res =>  {
+                  return res.json()
+              }).then(data =>  {
+                  this.setState({
+                      savedTweets: data,
+                  })
+              }).catch(error =>  console.log({'Error': error}))
+          }
 
-      saveTweet = (tweet) => {
-        console.log('frontend-tweet', tweet);
-        console.log('this is the id: ', this.state.userid);
-            fetch(this.state.baseURL + '/tweetbattle/' + this.state.userid, {
-                method: 'PUT',
-                body: JSON.stringify({ 
-                    savedTweet: tweet,
-                    id: this.state.userid,
-                }),
-                headers:  {
-                    'Content-Type': 'application/json'
-                }
-            }).then(res =>  {
-                return res.json()
-            }).then(data =>  {
-                this.setState({
-                    savedTweets: data,
-                })
-            }).catch(error =>  console.log({'Error': error}))
-            if(this.state.login) {
-              this.refs.chad.setAttribute("disabled", "disabled");
-            }
-      }
-            
         delete = (index) => {
          //event.preventDefault();
           console.log('this is the id: ', this.state.userid);
@@ -373,7 +367,10 @@
               
 
             </>
+
+            
           }
+
         <Footer />
 
           {/* Sasi - END Toggle for Signup */}
