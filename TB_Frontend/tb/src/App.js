@@ -263,11 +263,7 @@
           <div className="loggedIn">
           {this.state.login? <button className="btn btn-dark float-right" onClick={this.logout}>Logout</button>:""}
           </div>
-                {
-                  (this.state.login)
-                  ? ''
-                  : <p>Signup to save your favourites!</p>
-                }
+
           {/* Sasi - START Toggle for Signup */}
           {this.state.signUp? 
             <form className="form justify-content-center" style={{width:"50%"}} onSubmit={this.createUser}>
@@ -290,22 +286,6 @@
             </form>
             :    
             <>
-              {this.state.login? "":
-                    <ul className="nav justify-content-center">
-                    <li className="nav-item">
-                      <input className="form-control" type="text" onChange={this.handleChange} value={this.state.loginUsername} id="loginUsername" name="loginUsername" placeholder="email (Username)"/>
-                    </li>
-                    <li className="nav-item">
-                        <input  className="form-control" type="password" onChange={this.handleChange} value={this.state.loginPassword} id="loginPassword" name="loginPassword" placeholder="Password"/>
-                    </li>
-                    <li className="nav-item">    
-                    <button className="btn btn-primary form-control" style={{marginLeft:"6px"}}onClick={this.login}>Login</button>
-                    </li>
-                    <li className="nav-item">
-                      <button className="btn btn-primary form-control" style={{marginLeft:"12px"}} onClick={this.signUp}>Signup</button>
-                    </li>
-                  </ul>
-              }
               <div className="logo">
               
               </div>
@@ -391,9 +371,30 @@
                 
               }
               </div>
-
-              
-
+              {/* Sasi - LOGIN section START */}
+              {
+                  (this.state.login)
+                  ? ''
+                  : <p>Signup to save your favourites!</p>
+              }
+              {this.state.login? "":
+                    <ul className="nav justify-content-center">
+                    <li className="nav-item">
+                      <input className="form-control" type="text" onChange={this.handleChange} value={this.state.loginUsername} id="loginUsername" name="loginUsername" placeholder="email (Username)"/>
+                    </li>
+                    <li className="nav-item">
+                        <input  className="form-control" type="password" onChange={this.handleChange} value={this.state.loginPassword} id="loginPassword" name="loginPassword" placeholder="Password"/>
+                    </li>
+                    <li className="nav-item">    
+                    <button className="btn btn-primary form-control" style={{marginLeft:"6px"}}onClick={this.login}>Login</button>
+                    </li>
+                    <li className="nav-item">
+                      <button className="btn btn-primary form-control" style={{marginLeft:"12px"}} onClick={this.signUp}>Signup</button>
+                    </li>
+                  </ul>
+              }
+               {/* Sasi - LOGIN section END */}
+              <div style={{height:"25px"}}> </div>
             </>
 
             
