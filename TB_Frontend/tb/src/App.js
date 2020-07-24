@@ -294,17 +294,15 @@
               {
                 this.state.gif
                 ? <iframe src={ this.state.gif } width="480" height="222" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-                : ''
+                : '' 
               }
 
               <div className="container">
               {
                 this.state.answer
-                ? <div className="answer">Better luck next time! Don't worry you are still the greatest</div>
+                ? <div className="answer">Better luck next time! Don't worry you are still the greatest.</div>
                 : ''
               } 
-
-              
 
               <h3 className="quote">
               {
@@ -362,7 +360,7 @@
                       </svg>
                     </button>
                     <br/>
-                    { tweet }
+                    "{ tweet }"
                     </div>
                   )
                 })
