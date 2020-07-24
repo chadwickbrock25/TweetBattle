@@ -360,14 +360,14 @@
 
             </div>
 
-              <div className="row justify-content-center allSavedTweets">
-
                 {
                   (this.state.savedTweets && this.state.login)
                   ? <h2 className="favourites">Your Favourites</h2>
                   : ''
                 }
-      
+
+              <div className="row justify-content-center allSavedTweets">
+
               {
                 (this.state.savedTweets && this.state.login)
                 ? 
