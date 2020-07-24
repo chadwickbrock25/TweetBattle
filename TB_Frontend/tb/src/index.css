@@ -18,6 +18,15 @@ code {
     monospace;
 }
 
+iframe {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #667380;
+}
+
 .main {
   margin-top: 50px;
   margin: auto;
@@ -27,9 +36,25 @@ code {
   height: 100%;
 }
 
+.nav  {
+  margin-bottom: 20px;
+}
+
+.subHeadline  {
+  color: #667380;
+  font-size: large;
+}
+
+.favourites {
+  color: #667380;
+}
 
 .allSavedTweets {
   margin-top: 35px;
+}
+
+.form {
+  margin: auto;
 }
 
 .savedTweet {
@@ -64,9 +89,28 @@ code {
   margin-bottom: 20px;
 }
 
-/* .score {
-  background-image: url("../public/ezgif.com-crop\ \(22\).gif");
-} */
+.answer {
+  color: red;
+}
+
+.score {
+  background-image: url("./ezgif.com-crop\ \(22\).gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 170px 170px;
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #667380;
+}
+
+.score p {
+  margin: 0;
+}
+
 
 .container {
   min-height: 250px;
@@ -84,6 +128,27 @@ code {
   -moz-box-shadow: 7px 7px 15px -17px rgba(46,50,60,0.9);
   box-shadow: 7px 7px 15px -17px rgba(46,50,60,0.9);
   border-radius: 5px;
+}
+
+.kanyeTrump {
+  margin-bottom: 20px;
+}
+
+.btn  {
+  width: 120px;
+  font-weight: 600;
+}
+
+.trump {
+  background-color: orange;
+  border-color: orange;
+  width: 200px;
+}
+
+.kanye {
+  background-color: purple;
+  border-color: purple;
+  width: 200px;
 }
 
 .footer {

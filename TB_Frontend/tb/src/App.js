@@ -1,6 +1,5 @@
   import React, { Component} from 'react';
   import Footer from './components/footer';
-  import Circle from '.'
 
   export default class App extends Component {
     state = {
@@ -264,9 +263,14 @@
           <div className="loggedIn">
           {this.state.login? <button className="btn btn-dark float-right" onClick={this.logout}>Logout</button>:""}
           </div>
+                {
+                  (this.state.login)
+                  ? ''
+                  : <p>Signup to save your favourites!</p>
+                }
           {/* Sasi - START Toggle for Signup */}
           {this.state.signUp? 
-            <form className="form" style={{width:"50%"}} onSubmit={this.createUser}>
+            <form className="form justify-content-center" style={{width:"50%"}} onSubmit={this.createUser}>
             <div className="form-group">
                   <input className="form-control" type="text" onChange={this.handleChange} value={this.state.firstName} placeholder="First name" id="firstName" name="firstName"/>
               </div>
@@ -287,7 +291,7 @@
             :    
             <>
               {this.state.login? "":
-                    <ul className="nav">
+                    <ul className="nav justify-content-center">
                     <li className="nav-item">
                       <input className="form-control" type="text" onChange={this.handleChange} value={this.state.loginUsername} id="loginUsername" name="loginUsername" placeholder="email (Username)"/>
                     </li>
@@ -307,7 +311,11 @@
               </div>
               <h2> <div className="score">Score: { this.state.score }</div> </h2>
 
-              <iframe src={ this.state.gif } width="480" height="222" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              {
+                this.state.gif
+                ? <iframe src={ this.state.gif } width="480" height="222" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                : ''
+              }
 
               <div className="container">
               {
@@ -330,8 +338,13 @@
                 : ''
               }
               </h3><br/>
-              <button ref="kanye" className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreKanye() }>Kanye</button>
-              <button ref="trump" className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreTrump() }>Trump</button>
+
+              <div className="kanyeTrump">
+              <button ref="kanye" className="btn btn-primary kanye" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreKanye() }>Kanye</button>
+              <button ref="trump" className="btn btn-primary trump" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreTrump() }>Trump</button>
+              </div>
+
+              <div className="saveQuote">
               <button className="btn btn-primary" style={{marginLeft:"6px"}} onClick={ () => this.handleClick() }>New Quote</button>
               
               { 
@@ -344,18 +357,26 @@
               <button ref="chad" className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.message) }>Save Quote</button>
               : ""
               }
+            </div>
 
             </div>
 
+                {
+                  (this.state.savedTweets && this.state.login)
+                  ? <h2 className="favourites">Your Favourites</h2>
+                  : ''
+                }
+
               <div className="row justify-content-center allSavedTweets">
+
               {
                 (this.state.savedTweets && this.state.login)
-                ?
+                ? 
                 this.state.savedTweets.map((tweet,index) => {
                   return (
                   <div className="w-25 p-3 savedTweet">
                     <button style={{marginLeft:"80%", border:"none", backgroundColor:"white"}} onClick={e => this.delete(index)} key={index} value={index}>
-                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="red" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                         <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                       </svg>
