@@ -1,4 +1,5 @@
   import React, { Component} from 'react';
+  import Footer from './components/footer';
 
   export default class App extends Component {
     state = {
@@ -296,7 +297,7 @@
               }          
               <h1>Trump vs. Kanye: Who Done It?</h1>
               <p>It's a true battle of the intellect. Can you guess who said what?</p>
-              <h2> <div>Score: { this.state.score }</div> </h2>
+              <h2> <div className="score">Score: { this.state.score }</div> </h2>
 
               <iframe src={ this.state.gif } width="480" height="222" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
@@ -369,11 +370,7 @@
             
           }
 
-        <div className="footer">
-        <div className="footer-text">
-          Copyright &copy; 2020 &mdash; TheGreatestBattle | Made with &hearts; in Texas, Atlanta & London
-        </div>
-        </div>
+        <Footer />
 
           {/* Sasi - END Toggle for Signup */}
         </div>
