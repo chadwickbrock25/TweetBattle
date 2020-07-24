@@ -47,6 +47,7 @@ p {
 
 .favourites {
   color: #667380;
+  margin-top: 20px;
 }
 
 .allSavedTweets {
@@ -146,10 +147,20 @@ p {
   width: 200px;
 }
 
+.trump:hover {
+  background-color: orangered;
+  border-color: orangered;
+}
+
 .kanye {
   background-color: purple;
   border-color: purple;
   width: 200px;
+}
+
+.kanye:hover {
+  background-color: plum;
+  border-color: plum;
 }
 
 .footer {
