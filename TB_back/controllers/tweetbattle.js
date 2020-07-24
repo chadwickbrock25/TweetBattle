@@ -77,13 +77,31 @@ tweetBattle.put('/:id', (req, res) => {
 });
 
   // DELETE ROUTE
-tweetBattle.delete('/:id', (req, res) => {
-    userModel.findByIdAndRemove(req.params.id, (err, deleteTweetBattle) => {
+tweetBattle.delete('/', (req, res) => {
+  console.log('this is the req.body: ', req.body);
+    userModel.findById(req.body.id, (err, foundUser) => {
       if (err) {
         res.status(400).json({ error: err.message })
       }
-      res.status(200).json(deleteTweetBattle)
+      if (req.body.password == foundUser.password) {
+        let verifiedUser = jwt.verify(req.body.token, TOKEN_SECRET);
+        console.log(verifiedUser);
+        if(req.body.id == verifiedUser.userId){
+          foundUser.savedTweets.splice(req.body.index,1);
+          foundUser.save((err, data) => {
+            console.log('this is the founduser: ', foundUser);
+            if (err) {
+              res.status(400).json({ error: err.message })
+            }
+            res.status(200).json(foundUser.savedTweets);
+          })
+        }
+      } 
+      else{
+        res.status(401).json({message:"Invalid Username/Password"});
+      }
+
     })
-  })
+  });
   
   module.exports = tweetBattle
