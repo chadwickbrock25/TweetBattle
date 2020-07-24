@@ -31,6 +31,9 @@
     }
 
         handleClick = () => {
+          if(this.state.login) {
+            this.refs.chad.removeAttribute("disabled");
+          }
           this.refs.kanye.removeAttribute("disabled");
           this.refs.trump.removeAttribute("disabled");
           let randomiser = () => {
@@ -142,6 +145,9 @@
                       savedTweets: data,
                   })
               }).catch(error =>  console.log({'Error': error}))
+              if(this.state.login) {
+                this.refs.chad.setAttribute("disabled", "disabled");
+              }
           }
 
         delete = (index) => {
@@ -280,7 +286,7 @@
             :    
             <>
               {this.state.login? "":
-                    <ul className="nav">
+                    <ul className="nav justify-content-center">
                     <li className="nav-item">
                       <input className="form-control" type="text" onChange={this.handleChange} value={this.state.loginUsername} id="loginUsername" name="loginUsername" placeholder="email (Username)"/>
                     </li>
@@ -329,11 +335,11 @@
               { 
               ( this.state.login && this.state.tweet.quote )
               ? 
-              <button className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.quote) }>Save Quote</button>
+              <button ref="chad" className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.quote) }>Save Quote</button>
               :
               ( this.state.login && this.state.tweet.message )
               ?
-              <button className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.message) }>Save Quote</button>
+              <button ref="chad" className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.message) }>Save Quote</button>
               : ""
               }
 

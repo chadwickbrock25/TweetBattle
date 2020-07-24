@@ -18,6 +18,11 @@ code {
     monospace;
 }
 
+iframe {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .main {
   margin-top: 50px;
   margin: auto;
@@ -25,6 +30,10 @@ code {
   width: 100%;
   text-align: center;
   height: 100%;
+}
+
+.nav  {
+  margin-bottom: 20px;
 }
 
 
@@ -62,6 +71,10 @@ code {
 .answer .score {
   margin-bottom: 20px;
   margin-bottom: 20px;
+}
+
+.answer {
+  color: red;
 }
 
 .score {
