@@ -32,6 +32,9 @@
     }
 
         handleClick = () => {
+          if(this.state.login) {
+            this.refs.chad.removeAttribute("disabled");
+          }
           this.refs.kanye.removeAttribute("disabled");
           this.refs.trump.removeAttribute("disabled");
           let randomiser = () => {
@@ -143,6 +146,9 @@
                       savedTweets: data,
                   })
               }).catch(error =>  console.log({'Error': error}))
+              if(this.state.login) {
+                this.refs.chad.setAttribute("disabled", "disabled");
+              }
           }
 
         delete = (index) => {
