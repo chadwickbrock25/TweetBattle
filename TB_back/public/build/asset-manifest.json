@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.17381dc5.chunk.css",
+    "main.js": "/static/js/main.d82b30e7.chunk.js",
+    "main.js.map": "/static/js/main.d82b30e7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.48781b86.js",
+    "runtime-main.js.map": "/static/js/runtime-main.48781b86.js.map",
+    "static/js/2.ca93eb3f.chunk.js": "/static/js/2.ca93eb3f.chunk.js",
+    "static/js/2.ca93eb3f.chunk.js.map": "/static/js/2.ca93eb3f.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.25dc0d147a6a29c596a62167063a164e.js": "/precache-manifest.25dc0d147a6a29c596a62167063a164e.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.17381dc5.chunk.css.map": "/static/css/main.17381dc5.chunk.css.map",
+    "static/js/2.ca93eb3f.chunk.js.LICENSE.txt": "/static/js/2.ca93eb3f.chunk.js.LICENSE.txt",
+    "static/media/KW.png": "/static/media/KW.04803081.png",
+    "static/media/index.css": "/static/media/ezgif.com-crop (22).44827db9.gif",
+    "static/media/trump-turd.png": "/static/media/trump-turd.83453a5c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.48781b86.js",
+    "static/js/2.ca93eb3f.chunk.js",
+    "static/css/main.17381dc5.chunk.css",
+    "static/js/main.d82b30e7.chunk.js"
+  ]
+}
