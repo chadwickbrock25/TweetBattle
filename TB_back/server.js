@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
-const PORT = 3003;
+const PORT = process.env.PORT || 3003;
 const path = require('path'); 
-const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017/tweetbattle';
+const MONGODB_URL = process.env.MONGODB_URI || 'mongodb://localhost:27017/tweetbattle';
 
 // Error / Disconnection
 mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not running?'))
@@ -17,9 +17,9 @@ mongoose.connection.once('open', ()=>{
 
 // middleware
 app.use(express.json()); 
+app.use(express.static(path.join("public/build")));
 
-
-const whitelist = ['http://localhost:3000'];
+/* const whitelist = ['http://localhost:3000'];
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) >= 0) {
@@ -30,7 +30,7 @@ const corsOptions = {
   },
 };
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); */
 
 const tweetBattleController = require('./controllers/tweetbattle.js')
 app.use('/tweetbattle', tweetBattleController);
