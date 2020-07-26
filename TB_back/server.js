@@ -4,7 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const PORT = 3003;
 const path = require('path'); 
-const MONGODB_URL = proces.env.MONGODB_URL || 'mongodb://localhost:27017/tweetbattle';
+const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017/tweetbattle';
 
 // Error / Disconnection
 mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not running?'))
