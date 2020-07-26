@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-//const cors = require('cors');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 const PORT = process.env.PORT || 3003;
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.static(path.join("public/build")));
 
 
-/* const whitelist = ['http://localhost:3000'];
+const whitelist = ['http://localhost:3000'];
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) >= 0) {
@@ -31,7 +31,7 @@ const corsOptions = {
   },
 };
 
-app.use(cors(corsOptions)); */
+app.use(cors(corsOptions));
 
 const tweetBattleController = require('./controllers/tweetbattle.js')
 app.use('/tweetbattle', tweetBattleController)
