@@ -196,4 +196,43 @@ p {
 }
 
 
-
+@media(max-width: 1000px) {
+  .logo {
+    background-size: 25rem;
+  }
+  .giphy-embed {
+    max-width: 25rem;
+  }
+}
+@media(max-width:911px) {
+  body {
+    border-right: 250px;
+    border-left: 250px;
+  }
+}
+@media(max-width: 420px) {
+  .logo {
+    background-size: 23rem;
+    margin-left: 2rem;
+  }
+  .giphy-embed {
+    margin-left: 2rem;
+    
+  }
+  .score {
+    margin-left: 2rem;
+  }
+}
+@media(max-width:320px) {
+  .logo {
+    margin-left: .5rem;
+    width: 23rem;
+  }
+  .score {
+    margin-left: 2.5rem;
+  }
+  .giphy-embed {
+    margin-left: 2rem;
+    
+  }
+}
