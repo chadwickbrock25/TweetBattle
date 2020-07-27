@@ -66,6 +66,7 @@ p {
   margin-left: 1%;
   margin-bottom: 15px;
   font-family: 'Catamaran', sans-serif;
+  font-style: italic;
   border-radius: 20px;
   -webkit-box-shadow: 7px 7px 15px -17px rgba(46,50,60,0.9);
   -moz-box-shadow: 7px 7px 15px -17px rgba(46,50,60,0.9);
@@ -80,19 +81,29 @@ p {
 }
 
 .loggedIn {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   min-height: 30px;
   padding-top: 30px;
   margin-right: 10px;
 }
 
-.answer .score {
+.answer .score .correctAnswer {
   margin-bottom: 20px;
   margin-bottom: 20px;
 }
 
 .answer {
   color: red;
+}
+
+.ktImg  {
+  max-width: 75px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.correctAnswer {
+  color: green;
 }
 
 .score {
@@ -188,7 +199,7 @@ p {
 
 .logo{
   background-image: url(./battleheader.jpg);
-  background-size: 500px;
+  background-size: 450px;
   height: 20rem;
   background-repeat: no-repeat;
   background-position: center;

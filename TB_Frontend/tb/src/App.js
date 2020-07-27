@@ -1,6 +1,8 @@
   import React, { Component} from 'react';
   import Footer from './components/footer';
-
+  import TrumpImg from './trump-turd.png';
+  import KanyeImg from './KW.png';
+  const baseURL = process.env.REACT_APP_BACKEND_URL || "http://localhost:3003";
   export default class App extends Component {
     state = {
       trumpURL: 'https://api.whatdoestrumpthink.com/api/v1/quotes/random',
@@ -22,7 +24,7 @@
       loginPassword: "",
       token:"",
       userid:"",
-      baseURL: 'http://localhost:3003',
+      baseURL: baseURL,
       savedTweets:[]
     }
 
@@ -123,14 +125,17 @@
           this.refs.kanye.setAttribute("disabled", "disabled");
         }
 
-        saveTweet = (tweet) => {
+        saveTweet = (tweet, kanyeOrTrump) => {
           console.log('frontend-tweet', tweet);
           console.log('this is the id: ', this.state.userid);
           let loginInfo = JSON.parse(localStorage.getItem("loginInfo"));
               fetch(this.state.baseURL + '/tweetbattle/' + this.state.userid, {
                   method: 'PUT',
                   body: JSON.stringify({ 
-                      savedTweet: tweet,
+                      savedTweet:  {
+                        tweet: tweet,
+                        trumpOrKanye: kanyeOrTrump,
+                      },
                       id: this.state.userid,
                       password:loginInfo.loginPassword,
                       token:loginInfo.token
@@ -294,17 +299,15 @@
               {
                 this.state.gif
                 ? <iframe src={ this.state.gif } width="480" height="222" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-                : ''
+                : '' 
               }
 
               <div className="container">
               {
                 this.state.answer
-                ? <div className="answer">Better luck next time! Don't worry you are still the greatest</div>
+                ? <div className="answer">Better luck next time! Don't worry you are still the greatest.</div>
                 : ''
               } 
-
-              
 
               <h3 className="quote">
               {
@@ -320,8 +323,8 @@
               </h3><br/>
 
               <div className="kanyeTrump">
-              <button ref="kanye" className="btn btn-primary kanye" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreKanye() }>Kanye</button>
               <button ref="trump" className="btn btn-primary trump" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreTrump() }>Trump</button>
+              <button ref="kanye" className="btn btn-primary kanye" style={{marginLeft:"6px"}} onClick={ () => this.checkScoreKanye() }>Kanye</button>
               </div>
 
               <div className="saveQuote">
@@ -330,11 +333,11 @@
               { 
               ( this.state.login && this.state.tweet.quote )
               ? 
-              <button ref="chad" className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.quote) }>Save Quote</button>
+              <button ref="chad" className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.quote, this.state.kanyeOrTrump) }>Save Quote</button>
               :
               ( this.state.login && this.state.tweet.message )
               ?
-              <button ref="chad" className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.message) }>Save Quote</button>
+              <button ref="chad" className="btn btn-success" style={{marginLeft:"6px"}} onClick={ () => this.saveTweet(this.state.tweet.message, this.state.kanyeOrTrump) }>Save Quote</button>
               : ""
               }
             </div>
@@ -352,7 +355,7 @@
               {
                 (this.state.savedTweets && this.state.login)
                 ? 
-                this.state.savedTweets.map((tweet,index) => {
+                this.state.savedTweets.map((tweet, index) => {
                   return (
                   <div className="w-25 p-3 savedTweet">
                     <button style={{marginLeft:"80%", border:"none", backgroundColor:"white"}} onClick={e => this.delete(index)} key={index} value={index}>
@@ -362,7 +365,13 @@
                       </svg>
                     </button>
                     <br/>
-                    { tweet }
+                    {
+                      tweet.trumpOrKanye == 0
+                      ? <img src={KanyeImg} alt="kanye" className="ktImg"></img>
+                      : <img src={TrumpImg} alt="trump" className="ktImg"></img>
+                    }
+                    <br></br>
+                    "{ tweet.tweet }"
                     </div>
                   )
                 })
