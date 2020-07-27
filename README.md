@@ -12,6 +12,8 @@ In order to use the app, download the full folder for the site to work. You will
 
 2. Implementing a sharing feature for favourited quotes.
 
+3. Sometimes the Giphy api does not find a matching Giph. This seems to be an issue with dotenv encrypting the API key and not serving it quickly enough.
+
 ## Collaborators
 * Chad
 * Lenny

@@ -2,6 +2,7 @@
   import Footer from './components/footer';
   import TrumpImg from './trump-turd.png';
   import KanyeImg from './KW.png';
+  const baseURL = process.env.REACT_APP_BACKEND_URL || "http://localhost:3003";
   export default class App extends Component {
     state = {
       trumpURL: 'https://api.whatdoestrumpthink.com/api/v1/quotes/random',
@@ -23,7 +24,7 @@
       loginPassword: "",
       token:"",
       userid:"",
-      baseURL: 'http://localhost:3003',
+      baseURL: baseURL,
       savedTweets:[]
     }
 
