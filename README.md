@@ -9,13 +9,11 @@ This is a full-CRUD app built using React & Express. Kanye West & Donald Trump q
 ## Deployed Link 
 https://tweetbattle-sei.herokuapp.com/
 
-#Technologies Used
-This has been built using React, Express, Node, Bootstrap, Mongo as well as pulling 
 
-#Using the App
+# Using the App
 In order to use the app, download the full folder for the site to work. You will need a baseline understanding of Express, MongoDB/Mongoose, & React to understand how it is put together and what changes can be made.
 
-#Still Unsolved
+# Still Unsolved
 1. Upon signup, the user is asked to login. Ideally the signup should automatically log them in to reduce friction. This can easily be achieved by running the login script at the same time as the signup script.
 
 2. Implementing a sharing feature for favourited quotes.
