@@ -1,7 +1,5 @@
 https://tweetbattle-sei.herokuapp.com/
 
-https://twitterbattle-test.herokuapp.com/
-
 ## Collaborators
 * Chad
 * Lenny
