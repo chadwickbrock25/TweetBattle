@@ -18,6 +18,15 @@ code {
     monospace;
 }
 
+iframe {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #667380;
+}
+
 .main {
   margin-top: 50px;
   margin: auto;
@@ -27,9 +36,27 @@ code {
   height: 100%;
 }
 
+.nav  {
+  margin-bottom: 20px;
+}
+
+.subHeadline  {
+  color: #667380;
+  font-size: large;
+}
+
+.favourites {
+  color: #667380;
+  margin-top: 20px;
+}
 
 .allSavedTweets {
   margin-top: 35px;
+  margin-bottom: 25px;
+}
+
+.form {
+  margin: auto;
 }
 
 .savedTweet {
@@ -39,6 +66,7 @@ code {
   margin-left: 1%;
   margin-bottom: 15px;
   font-family: 'Catamaran', sans-serif;
+  font-style: italic;
   border-radius: 20px;
   -webkit-box-shadow: 7px 7px 15px -17px rgba(46,50,60,0.9);
   -moz-box-shadow: 7px 7px 15px -17px rgba(46,50,60,0.9);
@@ -53,16 +81,49 @@ code {
 }
 
 .loggedIn {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   min-height: 30px;
   padding-top: 30px;
   margin-right: 10px;
 }
 
-.answer .score {
+.answer .score .correctAnswer {
   margin-bottom: 20px;
   margin-bottom: 20px;
 }
+
+.answer {
+  color: red;
+}
+
+.ktImg  {
+  max-width: 75px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.correctAnswer {
+  color: green;
+}
+
+.score {
+  background-image: url("./ezgif.com-crop\ \(22\).gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 170px 170px;
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #667380;
+}
+
+.score p {
+  margin: 0;
+}
+
 
 .container {
   min-height: 250px;
@@ -80,6 +141,37 @@ code {
   -moz-box-shadow: 7px 7px 15px -17px rgba(46,50,60,0.9);
   box-shadow: 7px 7px 15px -17px rgba(46,50,60,0.9);
   border-radius: 5px;
+}
+
+.kanyeTrump {
+  margin-bottom: 20px;
+}
+
+.btn  {
+  width: 120px;
+  font-weight: 600;
+}
+
+.trump {
+  background-color: orange;
+  border-color: orange;
+  width: 200px;
+}
+
+.trump:hover {
+  background-color: orangered;
+  border-color: orangered;
+}
+
+.kanye {
+  background-color: purple;
+  border-color: purple;
+  width: 200px;
+}
+
+.kanye:hover {
+  background-color: plum;
+  border-color: plum;
 }
 
 .footer {
@@ -105,7 +197,53 @@ code {
   margin-bottom: -5px;
 }
 
+.logo{
+  background-image: url(./battleheader.jpg);
+  background-size: 450px;
+  height: 20rem;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
 
 
-
-
+@media(max-width: 1000px) {
+  .logo {
+    background-size: 25rem;
+  }
+  .giphy-embed {
+    max-width: 25rem;
+  }
+}
+@media(max-width:911px) {
+  body {
+    border-right: 250px;
+    border-left: 250px;
+  }
+}
+@media(max-width: 420px) {
+  .logo {
+    background-size: 23rem;
+    margin-left: 2rem;
+  }
+  .giphy-embed {
+    margin-left: 2rem;
+    
+  }
+  .score {
+    margin-left: 2rem;
+  }
+}
+@media(max-width:320px) {
+  .logo {
+    margin-left: .5rem;
+    width: 23rem;
+  }
+  .score {
+    margin-left: 2.5rem;
+  }
+  .giphy-embed {
+    margin-left: 2rem;
+    
+  }
+}
