@@ -1,5 +1,3 @@
-https://tweetbattle-sei.herokuapp.com/
-
 ## Collaborators
 * Chad
 * Lenny
@@ -8,8 +6,11 @@ https://tweetbattle-sei.herokuapp.com/
 # Description
 This is a full-CRUD app built using React & Express. Kanye West & Donald Trump quotes are randomly generated and the user has to decide who said it (very difficult we know). Users can also create accounts to save their favourite quotes. When a user guesses who said it a GIF is generated in response to their answer.
 
+## Deployed Link 
+https://tweetbattle-sei.herokuapp.com/
+
 #Technologies Used
-This has been built using React, Express, Node, Bootstrap, Mongo as well as pulling data from the Kanye West, Donald Trump & Giphy APIs
+This has been built using React, Express, Node, Bootstrap, Mongo as well as pulling 
 
 #Using the App
 In order to use the app, download the full folder for the site to work. You will need a baseline understanding of Express, MongoDB/Mongoose, & React to understand how it is put together and what changes can be made.
@@ -33,3 +34,4 @@ In order to use the app, download the full folder for the site to work. You will
 - [Mongoose](http://mongoosejs.com) - Database ORM
 - [Bootstrap](https://getbootstrap.com/) - Fron End Toolkit
 - [VS Code](https://code.visualstudio.com) - Code Editor
+- [Data] Data from the Kanye West, Donald Trump & Giphy APIs
