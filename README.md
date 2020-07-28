@@ -34,4 +34,4 @@ In order to use the app, download the full folder for the site to work. You will
 - [Mongoose](http://mongoosejs.com) - Database ORM
 - [Bootstrap](https://getbootstrap.com/) - Fron End Toolkit
 - [VS Code](https://code.visualstudio.com) - Code Editor
-- [Data] Data from the Kanye West, Donald Trump & Giphy APIs
+- Data from the Kanye West, Donald Trump & Giphy APIs
