@@ -3,7 +3,7 @@
 * Lenny
 * Sasi
 
-# Description
+## Description
 This is a full-CRUD app built using React & Express. Kanye West & Donald Trump quotes are randomly generated and the user has to decide who said it (very difficult we know). Users can also create accounts to save their favourite quotes. When a user guesses who said it a GIF is generated in response to their answer.
 
 ## Deployed Link 
