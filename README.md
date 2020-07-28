@@ -22,3 +22,16 @@ In order to use the app, download the full folder for the site to work. You will
 2. Implementing a sharing feature for favourited quotes.
 
 3. Sometimes the Giphy api does not find a matching Giph. This seems to be an issue with dotenv encrypting the API key and not serving it quickly enough.
+
+4. Heroku Deployment Steps - https://github.com/Sasi-Koramutla/mernstackdeploy
+
+## Built With
+- [Node](https://nodejs.org) - JavaScript Runtime Environment
+- [Npm](https://www.npmjs.com) - Package Manager
+- [Express](https://expressjs.com/en/starter/installing.html) - Web Framework
+- [React](https://reactjs.org/) - Frontend Framework
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - Authorization Package
+- [MongoDB](https://www.mongodb.com) - Database
+- [Mongoose](http://mongoosejs.com) - Database ORM
+- [Bootstrap](https://getbootstrap.com/) - Fron End Toolkit
+- [VS Code](https://code.visualstudio.com) - Code Editor
